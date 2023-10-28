@@ -13,7 +13,7 @@ endif()
 
 ####################find package#####################################
 # Use ament_cmake_ros instead of ament_cmake for Humble and later
-find_package(ament_cmake_ros REQUIRED)
+find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
