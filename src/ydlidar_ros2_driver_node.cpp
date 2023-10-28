@@ -193,9 +193,13 @@ int main(int argc, char *argv[]) {
     if (laser.doProcessSimple(scan)) {
 
       auto scan_msg = std::make_shared<sensor_msgs::msg::LaserScan>();
+      
+      rclcpp::Clock system_clock(RCL_SYSTEM_TIME);  // 시스템 시간 클록을 사용.
+      rclcpp::Time now = system_clock.now();  // 현재 시간을 가져옴.
+      scan_msg->header.stamp = now;
 
-      scan_msg->header.stamp.sec = RCL_NS_TO_S(scan.stamp);
-      scan_msg->header.stamp.nanosec =  scan.stamp - RCL_S_TO_NS(scan_msg->header.stamp.sec);
+      //scan_msg->header.stamp.sec = RCL_NS_TO_S(scan.stamp);
+      //scan_msg->header.stamp.nanosec =  scan.stamp - RCL_S_TO_NS(scan_msg->header.stamp.sec);           
       scan_msg->header.frame_id = frame_id;
       scan_msg->angle_min = scan.config.min_angle;
       scan_msg->angle_max = scan.config.max_angle;
